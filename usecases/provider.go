@@ -38,6 +38,9 @@ func (u *providerUsecase) CreateProvider(body models.ProviderBody) (id uint32, e
 
 func (u *providerUsecase) GetAll() (res []models.Provider, err error) {
 	res, err = u.Repo.GetAll()
+	if len(res) == 0 {
+		res = make([]models.Provider, 0)
+	}
 	return
 }
 

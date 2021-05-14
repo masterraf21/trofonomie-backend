@@ -98,6 +98,7 @@ func (r *customerRepo) GetByID(id uint32) (res *models.Customer, err error) {
 	defer cancel()
 
 	err = collection.FindOne(ctx, bson.M{"customer_id": id}).Decode(&res)
+
 	if err != nil {
 		if strings.Contains(err.Error(), "mongo: no documents") {
 			err = nil

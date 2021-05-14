@@ -6,7 +6,7 @@ import (
 
 // Customer for customer table
 type Customer struct {
-	CustomerID uint32 `json:"customer_id"`
+	CustomerID uint32 `json:"customer_id" bson:"customer_id"`
 	Name       string `json:"customer_name" bson:"customer_name"`
 	Address    string `json:"customer_address" bson:"customer_address"`
 }

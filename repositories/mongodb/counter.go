@@ -39,12 +39,7 @@ func dropCounter(ctx context.Context, db *mongo.Database) (err error) {
 }
 
 func initCollection(ctx context.Context, db *mongo.Database) error {
-	counter := models.Counter{
-		CustomerID: 0,
-		MenuID:     0,
-		ProviderID: 0,
-		OrderID:    0,
-	}
+	counter := models.Counter{}
 
 	collection := db.Collection("counter")
 	_, err := collection.InsertOne(ctx, counter)

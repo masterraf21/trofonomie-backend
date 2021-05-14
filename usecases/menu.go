@@ -42,11 +42,17 @@ func (u *menuUsecase) CreateMenu(body models.MenuBody) (id uint32, err error) {
 
 func (u *menuUsecase) GetAll() (res []models.Menu, err error) {
 	res, err = u.Repo.GetAll()
+	if len(res) == 0 {
+		res = make([]models.Menu, 0)
+	}
 	return
 }
 
 func (u *menuUsecase) GetByProviderID(sellerID uint32) (res []models.Menu, err error) {
 	res, err = u.Repo.GetByProviderID(sellerID)
+	if len(res) == 0 {
+		res = make([]models.Menu, 0)
+	}
 	return
 }
 

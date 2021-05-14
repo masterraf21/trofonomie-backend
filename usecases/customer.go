@@ -35,6 +35,9 @@ func (u *customerUsecase) CreateCustomer(body models.CustomerBody) (id uint32, e
 
 func (u *customerUsecase) GetAll() (res []models.Customer, err error) {
 	res, err = u.Repo.GetAll()
+	if len(res) == 0 {
+		res = make([]models.Customer, 0)
+	}
 	return
 }
 

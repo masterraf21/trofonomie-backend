@@ -107,6 +107,9 @@ func (u *orderUsecase) AcceptOrder(id uint32) (err error) {
 
 func (u *orderUsecase) GetAll() (res []models.Order, err error) {
 	res, err = u.Repo.GetAll()
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
 
@@ -117,25 +120,40 @@ func (u *orderUsecase) GetByID(id uint32) (res *models.Order, err error) {
 
 func (u *orderUsecase) GetByProviderID(ProviderID uint32) (res []models.Order, err error) {
 	res, err = u.Repo.GetByProviderID(ProviderID)
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
 
 func (u *orderUsecase) GetByCustomerID(CustomerID uint32) (res []models.Order, err error) {
 	res, err = u.Repo.GetByCustomerID(CustomerID)
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
 
 func (u *orderUsecase) GetByCustomerIDAndStatus(CustomerID uint32, status string) (res []models.Order, err error) {
 	res, err = u.Repo.GetByCustomerIDAndStatus(CustomerID, status)
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
 
 func (u *orderUsecase) GetByProviderIDAndStatus(ProviderID uint32, status string) (res []models.Order, err error) {
-	res, err = u.Repo.GetByCustomerIDAndStatus(ProviderID, status)
+	res, err = u.Repo.GetByProviderIDAndStatus(ProviderID, status)
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
 
 func (u *orderUsecase) GetByStatus(status string) (res []models.Order, err error) {
 	res, err = u.Repo.GetByStatus(status)
+	if len(res) == 0 {
+		res = make([]models.Order, 0)
+	}
 	return
 }
