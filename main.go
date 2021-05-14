@@ -10,6 +10,10 @@ import (
 
 	"go.mongodb.org/mongo-driver/mongo"
 
+	"github.com/masterraf21/trofonomie-backend/apis"
+	repoMongo "github.com/masterraf21/trofonomie-backend/repositories/mongodb"
+	"github.com/masterraf21/trofonomie-backend/usecases"
+
 	"github.com/gorilla/mux"
 	"github.com/masterraf21/trofonomie-backend/configs"
 	"github.com/masterraf21/trofonomie-backend/utils/mongodb"
@@ -42,6 +46,22 @@ func (s *Server) Start() {
 	}
 
 	r := new(mux.Router)
+
+	counterRepo := repoMongo.NewCounterRepo(s.Instance)
+	customerRepo := repoMongo.NewCustomerRepo(s.Instance, counterRepo)
+	providerRepo := repoMongo.NewProviderRepo(s.Instance, counterRepo)
+	menuRepo := repoMongo.NewMenuRepo(s.Instance, counterRepo)
+	orderRepo := repoMongo.NewOrderRepo(s.Instance, counterRepo)
+
+	customerUsecase := usecases.NewCustomerUsecase(customerRepo)
+	providerUsecase := usecases.NewProviderUsecase(providerRepo)
+	orderUsecase := usecases.NewOrderUsecase(orderRepo, customerRepo, providerRepo, menuRepo)
+	menuUsecase := usecases.NewMenuUsecase(menuRepo, providerRepo)
+
+	apis.NewCustomerAPI(r, customerUsecase)
+	apis.NewMenuAPI(r, menuUsecase)
+	apis.NewProviderAPI(r, providerUsecase)
+	apis.NewOrderAPI(r, orderUsecase)
 
 	handler := cors.Default().Handler(r)
 

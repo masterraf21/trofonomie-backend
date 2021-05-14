@@ -6,7 +6,9 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 type Order struct {
 	ID              uint32        `bson:"order_id" json:"order_id"`
 	CustomerID      uint32        `bson:"customer_id" json:"customer_id"`
+	Customer        *Customer     `bson:"customer" json:"customer"`
 	ProviderID      uint32        `bson:"provider_id" json:"provider_id"`
+	Provider        *Provider     `bson:"provider" json:"provider"`
 	SourceAddress   string        `bson:"source_address" json:"source_address"`
 	DeliveryAddress string        `bson:"delivery_address" json:"delivery_address"`
 	OrderDetails    []OrderDetail `bson:"order_details" json:"order_details"`
@@ -24,8 +26,8 @@ type OrderDetail struct {
 
 // MenuDetail for body
 type MenuDetail struct {
-	ProductID uint32 `json:"menu_id"`
-	Quantity  uint32 `json:"quantity"`
+	MenuID   uint32 `json:"menu_id"`
+	Quantity uint32 `json:"quantity"`
 }
 
 // OrderBody body from json

@@ -17,8 +17,8 @@ type menuRepo struct {
 	CounterRepo models.CounterRepository
 }
 
-// NewmenuRepo will initiate product repo
-func NewmenuRepo(instance *mongo.Database, ctr models.CounterRepository) models.MenuRepository {
+// NewMenuRepo will initiate product repo
+func NewMenuRepo(instance *mongo.Database, ctr models.CounterRepository) models.MenuRepository {
 	return &menuRepo{Instance: instance, CounterRepo: ctr}
 }
 
