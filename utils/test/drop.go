@@ -13,23 +13,23 @@ func DropCounter(ctx context.Context, db *mongo.Database) (err error) {
 	return
 }
 
-// DropBuyer will drop buyer table
-func DropBuyer(ctx context.Context, db *mongo.Database) (err error) {
-	collection := db.Collection("buyer")
+// DropMenu will drop buyer table
+func DropMenu(ctx context.Context, db *mongo.Database) (err error) {
+	collection := db.Collection("menu")
 	err = collection.Drop(ctx)
 	return
 }
 
-// DropSeller will drop seller table
-func DropSeller(ctx context.Context, db *mongo.Database) (err error) {
-	collection := db.Collection("seller")
+// DropProvider will drop seller table
+func DropProvider(ctx context.Context, db *mongo.Database) (err error) {
+	collection := db.Collection("provider")
 	err = collection.Drop(ctx)
 	return
 }
 
-// DropProduct will drop product table
-func DropProduct(ctx context.Context, db *mongo.Database) (err error) {
-	collection := db.Collection("product")
+// DropCustomer will drop product table
+func DropCustomer(ctx context.Context, db *mongo.Database) (err error) {
+	collection := db.Collection("customer")
 	err = collection.Drop(ctx)
 	return
 }

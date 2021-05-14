@@ -42,10 +42,10 @@ type OrderRepository interface {
 	GetByID(id uint32) (*Order, error)
 	GetByOID(oid primitive.ObjectID) (*Order, error)
 	UpdateArbitrary(id uint32, key string, value interface{}) error
-	GetBySellerID(sellerID uint32) ([]Order, error)
-	GetByBuyerID(buyerID uint32) ([]Order, error)
-	GetByBuyerIDAndStatus(buyerID uint32, status string) ([]Order, error)
-	GetBySellerIDAndStatus(sellerID uint32, status string) ([]Order, error)
+	GetByProviderID(ProviderID uint32) ([]Order, error)
+	GetByCustomerID(CustomerID uint32) ([]Order, error)
+	GetByCustomerIDAndStatus(CustomerID uint32, status string) ([]Order, error)
+	GetByProviderIDAndStatus(ProviderID uint32, status string) ([]Order, error)
 	GetByStatus(status string) ([]Order, error)
 }
 
@@ -55,9 +55,9 @@ type OrderUsecase interface {
 	AcceptOrder(id uint32) error
 	GetAll() ([]Order, error)
 	GetByID(id uint32) (*Order, error)
-	GetBySellerID(sellerID uint32) ([]Order, error)
-	GetByBuyerID(buyerID uint32) ([]Order, error)
-	GetByBuyerIDAndStatus(buyerID uint32, status string) ([]Order, error)
-	GetBySellerIDAndStatus(sellerID uint32, status string) ([]Order, error)
+	GetByProviderID(ProviderID uint32) ([]Order, error)
+	GetByCustomerID(CustomerID uint32) ([]Order, error)
+	GetByCustomerIDAndStatus(CustomerID uint32, status string) ([]Order, error)
+	GetByProviderIDAndStatus(ProviderID uint32, status string) ([]Order, error)
 	GetByStatus(status string) ([]Order, error)
 }
